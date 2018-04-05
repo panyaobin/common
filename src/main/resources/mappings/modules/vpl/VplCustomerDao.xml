@@ -64,7 +64,7 @@
         <where>
             a.del_flag = #{DEL_FLAG_NORMAL}
             <if test="cusNo!= null and cusNo != ''">
-                AND a.cus_no LIKE concat('%', #{cusNo},'%')
+                AND a.cus_no = #{cusNo}
             </if>
             <if test="cusName!= null and cusName != ''">
                 AND a.cus_name LIKE concat('%', #{cusName},'%')

@@ -477,8 +477,7 @@ collapse;table-layout:fixed;width:642pt'>
 
         <%--哥几个精细有限公司--%>
         <%--<tr height=46 style='mso-height-source:userset;height:34.5pt'>
-            <td colspan=11 height=46 class=xl7111886 width=855 style='height:34.5pt;
-  width:642pt'>深圳市哥几个精细有限公司
+            <td colspan=11 height=46 class=xl7111886 width=855 style='height:34.5pt;width:642pt'>深圳市哥几个精细有限公司
             </td>
         </tr>
         <tr class=xl6311886 height=26 style='mso-height-source:userset;height:20.1pt'>
@@ -490,7 +489,7 @@ collapse;table-layout:fixed;width:642pt'>
             </td>
         </tr>--%>
 
-        <%--哥几个精细有限公司--%>
+        <%--深圳市东德精密科技有限公司--%>
         <tr height=46 style='mso-height-source:userset;height:34.5pt'>
             <td colspan=11 height=46 class=xl7111886 width=855 style='height:34.5pt;width:642pt'>深圳市东德精密科技有限公司
             </td>
@@ -510,7 +509,7 @@ collapse;table-layout:fixed;width:642pt'>
             <td class=xl1511886></td>
             <td class=xl6511886></td>
             <td colspan=5 rowspan=2 class=xl7311886 style='border-bottom:.5pt solid black'><span
-                    style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>委托加工单
+                    style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>送货单
             </td>
             <td colspan=3 class=xl7511886>NO:${tsyOrderDelivery.deliveryId}</td>
         </tr>

@@ -23,6 +23,22 @@
                 }
             });
         });
+        //验证客户编号是否存在
+        function validateCusNo(obj) {
+            debugger
+            if($(obj).val().trim()!=""){
+                var cusNo=$(obj).val().trim();
+                $.post("${ctx}/vpl/vplCustomer/valCusNo",{"cusNo":cusNo},function (msg) {
+                    if(msg==1){
+                        showTip("客户编号已存在");
+                        $(".cusNo").focus();
+                        $("#btnSubmit").attr("disabled",true);
+                    }else{
+                        $("#btnSubmit").attr("disabled",false);
+                    }
+                });
+            }
+        }
     </script>
 </head>
 <body>
@@ -44,7 +60,7 @@
         <label class="control-label">客户代码：</label>
         <div class="controls">
             <form:input path="cusNo" placeholder="请输入客户代码" htmlEscape="false" maxlength="16" class="input-xlarge  cusNo"
-                        required="required"/>
+                        required="required" onblur="validateCusNo(this);"/>
             <span class="help-inline"><font color="red">*</font> </span>
         </div>
     </div>

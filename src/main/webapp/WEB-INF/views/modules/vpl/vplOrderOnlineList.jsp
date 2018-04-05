@@ -22,7 +22,8 @@
             $("#orderDelivery").bind("click",function(){
                 debugger;
                 var ids = getAllCheckId();
-                if(ids.length/3<=8){
+                var id=ids.split(",");
+                if(id.length-1<=8){
                     if(ids !="" && ids != null){
                         location.href= "${ctx}/vpl/vplOrderDelivery/orderDelivery?ids="+ids+"";
                     }else{

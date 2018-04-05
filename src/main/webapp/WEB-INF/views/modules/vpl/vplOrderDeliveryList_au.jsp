@@ -178,7 +178,7 @@
                     ${tsyOrderDelivery.remarks}
             </td>
             <shiro:hasPermission name="vpl:vplOrderDelivery:edit"><td style="text-align: center">
-                <a href="${ctx}/vpl/vplOrderDelivery/delete?id=${tsyOrderDelivery.id}" onclick="return confirmx('确认要作废该出货单吗？', this.href)">作废</a>
+                <a href="${ctx}/vpl/vplOrderDelivery/audel?id=${tsyOrderDelivery.id}" onclick="return confirmx('确认要作废该出货单吗？', this.href)">作废</a>
             </td></shiro:hasPermission>
         </tr>
     </c:forEach>

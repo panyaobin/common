@@ -182,4 +182,18 @@ public class VplCustomerController extends BaseController {
         VplCustomer vc=vplCustomerService.getCusPrice(vplCustomer);
         return vc.getPrice();
     }
+
+    //查询用户报价
+    @RequestMapping(value = "valCusNo")
+    @ResponseBody
+    public int valCusNo(String cusNo, HttpServletRequest request, HttpServletResponse response) {
+        VplCustomer vplCustomer = new VplCustomer();
+        vplCustomer.setCusNo(cusNo);
+        Page<VplCustomer> page = vplCustomerService.findPage(new Page<VplCustomer>(request, response), vplCustomer);
+        int tag=0;
+        if (null!=page.getList()&&page.getList().size()>0){
+            tag=1;
+        }
+        return tag;
+    }
 }

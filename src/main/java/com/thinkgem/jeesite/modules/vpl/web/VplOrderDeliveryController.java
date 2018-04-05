@@ -93,8 +93,12 @@ public class VplOrderDeliveryController extends BaseController {
         vplOrderDelivery.setStatus(1);
         Page<VplOrderDelivery> page = vplOrderDeliveryService.findPage(new Page<VplOrderDelivery>(request, response), vplOrderDelivery);
         model.addAttribute("page", page);
-        model.addAttribute("startDateStr", new SimpleDateFormat("yyyy-MM-dd").parse(startDateStr));
-        model.addAttribute("endDateStr",new SimpleDateFormat("yyyy-MM-dd").parse(endDateStr));
+        if (StringUtils.isNotBlank(startDateStr)) {
+            model.addAttribute("startDateStr", new SimpleDateFormat("yyyy-MM-dd").parse(startDateStr));
+        }
+        if (StringUtils.isNotBlank(endDateStr)) {
+            model.addAttribute("endDateStr", new SimpleDateFormat("yyyy-MM-dd").parse(endDateStr));
+        }
         return "modules/vpl/vplOrderDeliveryList_au";
     }
 
@@ -224,6 +228,8 @@ public class VplOrderDeliveryController extends BaseController {
             for (int i = 0; i < page4.getList().size(); i++) {
                 Double leng = Double.parseDouble(page4.getList().get(i).getLeng());
                 Double wide = Double.parseDouble(page4.getList().get(i).getWide());
+                System.out.println(page4.getList().get(i).getId()+"------------------------------");
+               // System.out.println(page4.getList().get(i).getCounts()+"------------------------------");
                 Double counts = Double.parseDouble(page4.getList().get(i).getCounts());
                 Double d = leng * wide * counts / 1000000;
                 monthDeliCount += d;
@@ -285,6 +291,15 @@ public class VplOrderDeliveryController extends BaseController {
         vplOrderImport.setHasCounts(String.valueOf((Integer.parseInt(vplOrderImport.getHasCounts())) - (Integer.parseInt(counts))));
         vplOrderImportService.save(vplOrderImport);
         vplOrderDeliveryService.delete(vplOrderDelivery);
+        addMessage(redirectAttributes, "送货单成功成功作废！");
+        return "redirect:" + Global.getAdminPath() + "/vpl/vplOrderDelivery/?repage";
+    }
+
+    @RequiresPermissions("vpl:vplOrderDelivery:edit")
+    @RequestMapping(value = "audel")
+    public String audel(VplOrderDelivery vplOrderDelivery, RedirectAttributes redirectAttributes) {
+        vplOrderDelivery.setStatus(0);
+        vplOrderDeliveryService.save(vplOrderDelivery);
         addMessage(redirectAttributes, "送货单成功成功作废！");
         return "redirect:" + Global.getAdminPath() + "/vpl/vplOrderDelivery/?repage";
     }
@@ -442,7 +457,7 @@ public class VplOrderDeliveryController extends BaseController {
         if (StringUtils.isNotBlank(endDateStr)) {
             vplOrderDelivery.setEndDate(new SimpleDateFormat("yyyy-MM-dd").parse(endDateStr));
         }
-
+        vplOrderDelivery.setStatus(1);
         Page<VplOrderDelivery> page = vplOrderDeliveryService.findPage(new Page<VplOrderDelivery>(request, response), vplOrderDelivery);
         List<VplOrderDelivery> list = page.getList();
         if (null != list && list.size() > 0) {
